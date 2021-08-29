@@ -1,6 +1,6 @@
 
 # Load packages -----------------------------------------------------------
-set.seed(538)
+set.seed(916)
 library(tidyverse)
 
 
@@ -30,4 +30,4 @@ quiz_scores |>
         plot.caption = element_text(size = rel(1.25)), 
         axis.title = element_text(size = rel(1.25)))
 
-ggsave("output/figure_5_4.png", width = 9600, height = 6000, units = "px", dpi = 1200)
+ggsave("output/figure_17_1.png", width = 9600, height = 6000, units = "px", dpi = 1200)

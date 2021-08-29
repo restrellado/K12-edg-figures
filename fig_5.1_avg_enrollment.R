@@ -35,4 +35,4 @@ ggplot(data = schools, aes(x = school, y = mean_enrollment)) +
         plot.caption = element_text(size = rel(1.25)), 
         axis.title = element_text(size = rel(1.25)))
 
-ggsave("output/figure_5_1.png", width = 9000, height = 6000, units = "px", dpi = 1200)
+ggsave("output/figure_5_1.png", width = 9600, height = 6000, units = "px", dpi = 1200)

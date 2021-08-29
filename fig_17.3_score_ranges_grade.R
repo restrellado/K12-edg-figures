@@ -1,6 +1,6 @@
 
 # Load packages -----------------------------------------------------------
-set.seed(538)
+set.seed(916)
 library(tidyverse)
 
 # colorblind palette
@@ -8,26 +8,33 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 
 # Build dataset -----------------------------------------------------------
 
-quiz_results <- tibble(student = rep(c(1:30), 3), 
-                       quiz = c(rep("Quiz 1", 30), rep("Quiz 2", 30), rep("Quiz 3", 30)), 
-                       score_range = sample(c("Below Average", "Average", "Above Average"), 90, replace = TRUE))
+assessments <- tibble(student = rep(c(1:30), 3), 
+                      grade = c(rep(6, 30), rep(7, 30), rep(8, 30)), 
+                      score_range = sample(c("Not Proficient", "Proficient", "Advanced"), 
+                                           90, 
+                                           replace = TRUE))
+
+# Relevel factor 
+
+assessments$score_range <- factor(assessments$score_range, levels = c( "Advanced", "Proficient", "Not Proficient"))
 
 
 # Plot --------------------------------------------------------------------
 
-ggplot(data = quiz_results) + 
+ggplot(data = assessments) + 
   geom_bar(
-    aes(x = quiz, fill = score_range)) +
+    aes(x = grade, fill = score_range), position = "fill") +
   scale_fill_manual(values=cbPalette) +
+  scale_y_continuous(labels = scales::percent) +
   labs(#title = "Figure 5.2: Quiz Score Ranges by Quiz", 
        #subtitle = "Example of a stacked bar chart\nEach quiz was taken by 30 students.", 
        #caption = "This is not real data", 
-       x = "", 
-       y = "Number of Students", 
+       x = "Grade", 
+       y = "Percent of Students", 
        fill = "Score Range") + 
   theme(plot.title = element_text(size = rel(1.5)), 
         plot.subtitle = element_text(size = rel(1.25)), 
         plot.caption = element_text(size = rel(1.25)), 
         axis.title = element_text(size = rel(1.25)))
 
-ggsave("output/figure_5_2.png", width = 9600, height = 6000, units = "px", dpi = 1200)
+ggsave("output/figure_17_3.png", width = 9600, height = 6000, units = "px", dpi = 1200)
